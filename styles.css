@@ -1,0 +1,584 @@
+/* Root variables */
+:root {
+    --christmas-red: #c41e3a;
+    --christmas-red-dark: #8b0000;
+    --christmas-green: #228b22;
+    --christmas-green-dark: #006400;
+    --christmas-gold: #ffd700;
+    --christmas-cream: #fffef0;
+    --christmas-white: #ffffff;
+    --text-dark: #2c3e50;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #1a472a 0%, #2d5a3f 50%, #1a472a 100%);
+    min-height: 100vh;
+    color: var(--text-dark);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Snowflake animation */
+.snowflakes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10%;
+    color: white;
+    font-size: 1.5rem;
+    opacity: 0.8;
+    animation: fall linear infinite;
+}
+
+.snowflake:nth-child(1) { left: 5%; animation-duration: 10s; animation-delay: 0s; }
+.snowflake:nth-child(2) { left: 15%; animation-duration: 12s; animation-delay: 2s; font-size: 1rem; }
+.snowflake:nth-child(3) { left: 25%; animation-duration: 8s; animation-delay: 4s; }
+.snowflake:nth-child(4) { left: 35%; animation-duration: 14s; animation-delay: 1s; font-size: 2rem; }
+.snowflake:nth-child(5) { left: 45%; animation-duration: 9s; animation-delay: 3s; }
+.snowflake:nth-child(6) { left: 55%; animation-duration: 11s; animation-delay: 5s; font-size: 1.2rem; }
+.snowflake:nth-child(7) { left: 65%; animation-duration: 13s; animation-delay: 0.5s; }
+.snowflake:nth-child(8) { left: 75%; animation-duration: 10s; animation-delay: 2.5s; font-size: 1.8rem; }
+.snowflake:nth-child(9) { left: 85%; animation-duration: 15s; animation-delay: 4.5s; }
+.snowflake:nth-child(10) { left: 95%; animation-duration: 7s; animation-delay: 1.5s; font-size: 1.3rem; }
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0.3;
+    }
+}
+
+/* Header */
+header {
+    background: linear-gradient(180deg, var(--christmas-red) 0%, var(--christmas-red-dark) 100%);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+header::before,
+header::after {
+    content: '🎄';
+    position: absolute;
+    font-size: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+header::before {
+    left: 2rem;
+}
+
+header::after {
+    right: 2rem;
+}
+
+h1 {
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 3rem;
+    color: var(--christmas-white);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--christmas-gold);
+    font-weight: 600;
+}
+
+/* Navigation */
+nav {
+    background: var(--christmas-green-dark);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+nav a {
+    color: var(--christmas-white);
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    background: var(--christmas-green);
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+nav a:hover {
+    background: var(--christmas-gold);
+    color: var(--text-dark);
+    transform: translateY(-2px);
+}
+
+/* Main content */
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Cards */
+.card {
+    background: var(--christmas-cream);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid transparent;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.card h2 {
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 1.8rem;
+    color: var(--christmas-red);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px dashed var(--christmas-green);
+}
+
+.card ul, .card ol {
+    padding-left: 1.5rem;
+}
+
+.card li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.description {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+/* Dice grid */
+.dice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.dice-item {
+    background: linear-gradient(135deg, var(--christmas-green) 0%, var(--christmas-green-dark) 100%);
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.dice-item:hover {
+    transform: scale(1.05);
+}
+
+.dice {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.action {
+    font-size: 1rem;
+}
+
+.dice-grid.chaos .dice-item {
+    background: linear-gradient(135deg, var(--christmas-red) 0%, var(--christmas-red-dark) 100%);
+}
+
+/* Timer badge */
+.timer-badge {
+    background: var(--christmas-gold);
+    color: var(--text-dark);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+}
+
+/* Penalty card */
+.card.penalty {
+    border-color: var(--christmas-red);
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+}
+
+/* Transition card */
+.card.transition {
+    border-color: var(--christmas-gold);
+    background: linear-gradient(135deg, #fffef5 0%, #fff8dc 100%);
+}
+
+/* Finale info */
+.card.finale-info {
+    border-color: var(--christmas-green);
+}
+
+.hosts {
+    background: var(--christmas-green);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.ending {
+    background: linear-gradient(135deg, var(--christmas-gold) 0%, #ffcc00 100%);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Quiz section */
+.quiz-section {
+    border-color: var(--christmas-red);
+}
+
+.quiz-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.question-counter {
+    margin-left: auto;
+    font-weight: 600;
+    color: var(--christmas-red);
+}
+
+.btn {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+#shuffle-btn {
+    background: var(--christmas-green);
+    color: white;
+}
+
+#reset-btn {
+    background: var(--christmas-red);
+    color: white;
+}
+
+.quiz-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.question-card {
+    background: linear-gradient(135deg, var(--christmas-red) 0%, var(--christmas-red-dark) 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.question-card:hover:not(.used) {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-hover);
+}
+
+.question-card.used {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.question-card.active {
+    background: var(--christmas-gold);
+    color: var(--text-dark);
+}
+
+/* Current question display */
+.current-question {
+    background: white;
+    border: 3px solid var(--christmas-green);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-top: 1.5rem;
+}
+
+.current-question.hidden {
+    display: none;
+}
+
+.question-display {
+    margin-bottom: 1.5rem;
+}
+
+.question-number {
+    display: inline-block;
+    background: var(--christmas-red);
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 15px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.question-text {
+    font-size: 1.4rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.answer-display {
+    background: linear-gradient(135deg, var(--christmas-green) 0%, var(--christmas-green-dark) 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.answer-display.hidden {
+    display: none;
+}
+
+.answer-text {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.question-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn-answer {
+    background: var(--christmas-gold);
+    color: var(--text-dark);
+}
+
+.btn-next {
+    background: var(--christmas-green);
+    color: white;
+}
+
+/* Timer section */
+.timer-section {
+    text-align: center;
+}
+
+.timer-display {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: var(--christmas-red);
+    font-size: 4rem;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 1.5rem 0;
+    text-shadow: 0 0 20px var(--christmas-red);
+}
+
+.timer-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-start {
+    background: var(--christmas-green);
+    color: white;
+}
+
+.btn-pause {
+    background: var(--christmas-gold);
+    color: var(--text-dark);
+}
+
+.btn-reset {
+    background: var(--christmas-red);
+    color: white;
+}
+
+/* Footer */
+footer {
+    background: var(--christmas-red-dark);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+}
+
+.credits {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header::before,
+    header::after {
+        display: none;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .quiz-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .timer-display {
+        font-size: 3rem;
+    }
+
+    .dice-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 1rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    nav {
+        gap: 0.5rem;
+    }
+
+    nav a {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .quiz-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+
+    .question-card {
+        padding: 1rem;
+        min-height: 60px;
+        font-size: 1rem;
+    }
+
+    .question-controls {
+        flex-direction: column;
+    }
+
+    .timer-display {
+        font-size: 2.5rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Animation for showing answer */
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.answer-display:not(.hidden) {
+    animation: reveal 0.5s ease;
+}
+
+/* Pulse animation for timer */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+.timer-display.running {
+    animation: pulse 1s ease infinite;
+}
+
+.timer-display.warning {
+    color: var(--christmas-gold);
+    text-shadow: 0 0 20px var(--christmas-gold);
+}
+
+.timer-display.danger {
+    color: #ff0000;
+    text-shadow: 0 0 30px #ff0000;
+    animation: pulse 0.5s ease infinite;
+}

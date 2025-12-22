@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Julens Forbannelse 🎄</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+    </div>
+
+    <header>
+        <h1>🎁 JULENS FORBANNELSE 🎁</h1>
+        <p class="subtitle">Pakkelek & Quizfinale</p>
+    </header>
+
+    <nav>
+        <a href="#regler">Regler</a>
+        <a href="#del1">Del 1</a>
+        <a href="#del2">Del 2</a>
+        <a href="#finale">Finale</a>
+        <a href="#quiz">Quiz</a>
+    </nav>
+
+    <main>
+        <!-- Grunnregler -->
+        <section id="regler" class="card">
+            <h2>📜 Grunnregler</h2>
+            <ul>
+                <li><strong>5 spillere</strong> – 19 pakker</li>
+                <li>Ingen pakker åpnes før helt til slutt</li>
+                <li>Straff følger pakken så lenge du eier den</li>
+                <li>Ingen kan ha 0 pakker</li>
+            </ul>
+        </section>
+
+        <!-- Del 1 -->
+        <section id="del1" class="card">
+            <h2>🎲 Del 1 – Fordeling</h2>
+            <p class="description">Kast terningen og følg instruksjonene:</p>
+            <div class="dice-grid">
+                <div class="dice-item">
+                    <span class="dice">1-3</span>
+                    <span class="action">Ta pakke</span>
+                </div>
+                <div class="dice-item">
+                    <span class="dice">4-5</span>
+                    <span class="action">Gi pakke</span>
+                </div>
+                <div class="dice-item">
+                    <span class="dice">6</span>
+                    <span class="action">Bytt pakke</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Del 2 -->
+        <section id="del2" class="card">
+            <h2>🌀 Del 2 – Terningskaos <span class="timer-badge">10 min</span></h2>
+            <p class="description">Kaotisk fase! Kast terningen og gjør handlingen:</p>
+            <div class="dice-grid chaos">
+                <div class="dice-item">
+                    <span class="dice">1</span>
+                    <span class="action">Stjel pakke</span>
+                </div>
+                <div class="dice-item">
+                    <span class="dice">2</span>
+                    <span class="action">Gi pakke</span>
+                </div>
+                <div class="dice-item">
+                    <span class="dice">3</span>
+                    <span class="action">Bytt pakke</span>
+                </div>
+                <div class="dice-item">
+                    <span class="dice">4</span>
+                    <span class="action">Bytt alle (minst 1 hver)</span>
+                </div>
+                <div class="dice-item">
+                    <span class="dice">5</span>
+                    <span class="action">To spillere bytter</span>
+                </div>
+                <div class="dice-item">
+                    <span class="dice">6</span>
+                    <span class="action">Kontrollert kaos (velg én handling)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Glemme straff -->
+        <section class="card penalty">
+            <h2>⚠️ Glemme Straff</h2>
+            <p>Hvis noen glemmer straffen sin:</p>
+            <ol>
+                <li>Rop <strong>«STRAFF!»</strong></li>
+                <li>→ Gi én pakke til den som glemte</li>
+                <li>→ Hvis ikke mulig: stå over neste tur</li>
+            </ol>
+        </section>
+
+        <!-- Overgang til finale -->
+        <section id="finale" class="card transition">
+            <h2>🔄 Overgang til Finale</h2>
+            <p>Spillet stoppes og pakkene justeres rolig:</p>
+            <ul>
+                <li>Alle sitter igjen med <strong>2 pakker</strong></li>
+                <li><strong>9 pakker</strong> legges i midten</li>
+                <li>Alle straffer opphører</li>
+            </ul>
+        </section>
+
+        <!-- Quizfinale info -->
+        <section class="card finale-info">
+            <h2>🏆 Quizfinale – De siste 9 pakkene</h2>
+            <div class="hosts">
+                <p><strong>Programledere:</strong> Vincent & Edel</p>
+                <p><strong>Spillere:</strong> 3</p>
+            </div>
+            <ul>
+                <li>9 spørsmål – 1 pakke per spørsmål</li>
+                <li>Alle svarer samtidig</li>
+                <li>Riktig svar → vinner pakken</li>
+                <li>Flere riktige → terningkast avgjør</li>
+                <li>Ingen riktige → programleder avgjør</li>
+                <li><strong>Maks 3 pakker per spiller</strong></li>
+            </ul>
+            <div class="ending">
+                <p>🎉 <strong>Avslutning:</strong> Alle åpner pakkene – Julens forbannelse er brutt! 🎉</p>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="card quiz-section">
+            <h2>❓ Quiz – Programlederverktøy</h2>
+            <p class="description">Klikk på et spørsmål for å vise det. Klikk igjen for å vise svaret.</p>
+
+            <div class="quiz-controls">
+                <button id="shuffle-btn" class="btn">🔀 Bland spørsmål</button>
+                <button id="reset-btn" class="btn">🔄 Nullstill</button>
+                <span class="question-counter">Spørsmål brukt: <span id="used-count">0</span>/9</span>
+            </div>
+
+            <div id="quiz-container" class="quiz-container">
+                <!-- Questions will be loaded here by JavaScript -->
+            </div>
+
+            <div id="current-question" class="current-question hidden">
+                <div class="question-display">
+                    <span class="question-number"></span>
+                    <p class="question-text"></p>
+                </div>
+                <div class="answer-display hidden">
+                    <p class="answer-text"></p>
+                </div>
+                <div class="question-controls">
+                    <button id="show-answer-btn" class="btn btn-answer">Vis svar</button>
+                    <button id="next-question-btn" class="btn btn-next">Neste spørsmål</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timer -->
+        <section class="card timer-section">
+            <h2>⏱️ Timer – Del 2</h2>
+            <div class="timer-display">
+                <span id="timer">10:00</span>
+            </div>
+            <div class="timer-controls">
+                <button id="start-timer" class="btn btn-start">▶️ Start</button>
+                <button id="pause-timer" class="btn btn-pause">⏸️ Pause</button>
+                <button id="reset-timer" class="btn btn-reset">🔄 Nullstill</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>🎄 God jul og godt nytt år! 🎄</p>
+        <p class="credits">Julens Forbannelse – Et spill av Vincent & Edel</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
