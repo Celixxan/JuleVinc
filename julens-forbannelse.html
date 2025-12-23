@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Julens Forbannelse 🎄</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --christmas-red: #c41e3a;
+            --christmas-red-dark: #8b0000;
+            --christmas-green: #228b22;
+            --christmas-green-dark: #006400;
+            --christmas-gold: #ffd700;
+            --christmas-cream: #fffef0;
+            --christmas-white: #ffffff;
+            --text-dark: #2c3e50;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3f 50%, #1a472a 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            position: relative;
+            overflow-x: hidden;
+        }
+        .snowflakes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000; overflow: hidden; }
+        .snowflake { position: absolute; top: -10%; color: white; font-size: 1.5rem; opacity: 0.8; animation: fall linear infinite; }
+        .snowflake:nth-child(1) { left: 5%; animation-duration: 10s; animation-delay: 0s; }
+        .snowflake:nth-child(2) { left: 15%; animation-duration: 12s; animation-delay: 2s; font-size: 1rem; }
+        .snowflake:nth-child(3) { left: 25%; animation-duration: 8s; animation-delay: 4s; }
+        .snowflake:nth-child(4) { left: 35%; animation-duration: 14s; animation-delay: 1s; font-size: 2rem; }
+        .snowflake:nth-child(5) { left: 45%; animation-duration: 9s; animation-delay: 3s; }
+        .snowflake:nth-child(6) { left: 55%; animation-duration: 11s; animation-delay: 5s; font-size: 1.2rem; }
+        .snowflake:nth-child(7) { left: 65%; animation-duration: 13s; animation-delay: 0.5s; }
+        .snowflake:nth-child(8) { left: 75%; animation-duration: 10s; animation-delay: 2.5s; font-size: 1.8rem; }
+        .snowflake:nth-child(9) { left: 85%; animation-duration: 15s; animation-delay: 4.5s; }
+        .snowflake:nth-child(10) { left: 95%; animation-duration: 7s; animation-delay: 1.5s; font-size: 1.3rem; }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0.3; }
+        }
+        header {
+            background: linear-gradient(180deg, var(--christmas-red) 0%, var(--christmas-red-dark) 100%);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        header::before, header::after { content: '🎄'; position: absolute; font-size: 3rem; top: 50%; transform: translateY(-50%); }
+        header::before { left: 2rem; }
+        header::after { right: 2rem; }
+        h1 {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 3rem;
+            color: var(--christmas-white);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            margin-bottom: 0.5rem;
+        }
+        .subtitle { font-size: 1.2rem; color: var(--christmas-gold); font-weight: 600; }
+        nav {
+            background: var(--christmas-green-dark);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        nav a {
+            color: var(--christmas-white);
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            background: var(--christmas-green);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        nav a:hover { background: var(--christmas-gold); color: var(--text-dark); transform: translateY(-2px); }
+        main { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .card {
+            background: var(--christmas-cream);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid transparent;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .card h2 {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 1.8rem;
+            color: var(--christmas-red);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px dashed var(--christmas-green);
+        }
+        .card ul, .card ol { padding-left: 1.5rem; }
+        .card li { margin-bottom: 0.5rem; line-height: 1.6; }
+        .description { color: #666; font-style: italic; margin-bottom: 1rem; }
+        .dice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .dice-item {
+            background: linear-gradient(135deg, var(--christmas-green) 0%, var(--christmas-green-dark) 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        .dice-item:hover { transform: scale(1.05); }
+        .dice { display: block; font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem; }
+        .action { font-size: 1rem; }
+        .dice-grid.chaos .dice-item { background: linear-gradient(135deg, var(--christmas-red) 0%, var(--christmas-red-dark) 100%); }
+        .timer-badge { background: var(--christmas-gold); color: var(--text-dark); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.9rem; margin-left: 0.5rem; }
+        .card.penalty { border-color: var(--christmas-red); background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%); }
+        .card.transition { border-color: var(--christmas-gold); background: linear-gradient(135deg, #fffef5 0%, #fff8dc 100%); }
+        .card.finale-info { border-color: var(--christmas-green); }
+        .hosts { background: var(--christmas-green); color: white; padding: 1rem; border-radius: 10px; margin-bottom: 1rem; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem; }
+        .ending { background: linear-gradient(135deg, var(--christmas-gold) 0%, #ffcc00 100%); padding: 1rem; border-radius: 10px; text-align: center; margin-top: 1rem; font-size: 1.1rem; }
+        .quiz-section { border-color: var(--christmas-red); }
+        .quiz-controls { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .question-counter { margin-left: auto; font-weight: 600; color: var(--christmas-red); }
+        .btn { padding: 0.7rem 1.5rem; border: none; border-radius: 25px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: all 0.3s ease; font-family: inherit; }
+        .btn:hover { transform: translateY(-2px); }
+        #shuffle-btn { background: var(--christmas-green); color: white; }
+        #reset-btn { background: var(--christmas-red); color: white; }
+        .quiz-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+        .question-card {
+            background: linear-gradient(135deg, var(--christmas-red) 0%, var(--christmas-red-dark) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .question-card:hover:not(.used) { transform: scale(1.05); box-shadow: var(--shadow-hover); }
+        .question-card.used { background: #ccc; cursor: not-allowed; opacity: 0.6; }
+        .question-card.active { background: var(--christmas-gold); color: var(--text-dark); }
+        .current-question { background: white; border: 3px solid var(--christmas-green); border-radius: 15px; padding: 2rem; margin-top: 1.5rem; }
+        .current-question.hidden { display: none; }
+        .question-display { margin-bottom: 1.5rem; }
+        .question-number { display: inline-block; background: var(--christmas-red); color: white; padding: 0.3rem 1rem; border-radius: 15px; font-weight: bold; margin-bottom: 1rem; }
+        .question-text { font-size: 1.4rem; color: var(--text-dark); line-height: 1.6; }
+        .answer-display { background: linear-gradient(135deg, var(--christmas-green) 0%, var(--christmas-green-dark) 100%); color: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; }
+        .answer-display.hidden { display: none; }
+        .answer-text { font-size: 1.3rem; font-weight: bold; text-align: center; }
+        .question-controls { display: flex; gap: 1rem; justify-content: center; }
+        .btn-answer { background: var(--christmas-gold); color: var(--text-dark); }
+        .btn-next { background: var(--christmas-green); color: white; }
+        .timer-section { text-align: center; }
+        .timer-display {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--christmas-red);
+            font-size: 4rem;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            text-shadow: 0 0 20px var(--christmas-red);
+        }
+        .timer-controls { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn-start { background: var(--christmas-green); color: white; }
+        .btn-pause { background: var(--christmas-gold); color: var(--text-dark); }
+        .btn-reset { background: var(--christmas-red); color: white; }
+        footer { background: var(--christmas-red-dark); color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
+        footer p { margin-bottom: 0.5rem; }
+        .credits { font-size: 0.9rem; opacity: 0.8; }
+        @media (max-width: 768px) {
+            header::before, header::after { display: none; }
+            h1 { font-size: 2rem; }
+            .timer-display { font-size: 3rem; }
+            .dice-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            main { padding: 1rem; }
+            .card { padding: 1.5rem; }
+            nav { gap: 0.5rem; }
+            nav a { padding: 0.4rem 1rem; font-size: 0.9rem; }
+            .quiz-container { gap: 0.5rem; }
+            .question-card { padding: 1rem; min-height: 60px; font-size: 1rem; }
+            .question-controls { flex-direction: column; }
+            .timer-display { font-size: 2.5rem; padding: 1.5rem; }
+        }
+        @keyframes reveal { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .answer-display:not(.hidden) { animation: reveal 0.5s ease; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+        .timer-display.running { animation: pulse 1s ease infinite; }
+        .timer-display.warning { color: var(--christmas-gold); text-shadow: 0 0 20px var(--christmas-gold); }
+        .timer-display.danger { color: #ff0000; text-shadow: 0 0 30px #ff0000; animation: pulse 0.5s ease infinite; }
+    </style>
+</head>
+<body>
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">❄</div><div class="snowflake">❅</div><div class="snowflake">❆</div>
+        <div class="snowflake">❄</div><div class="snowflake">❅</div><div class="snowflake">❆</div>
+        <div class="snowflake">❄</div><div class="snowflake">❅</div><div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+    </div>
+    <header>
+        <h1>🎁 JULENS FORBANNELSE 🎁</h1>
+        <p class="subtitle">Pakkelek & Quizfinale</p>
+    </header>
+    <nav>
+        <a href="#regler">Regler</a>
+        <a href="#del1">Del 1</a>
+        <a href="#del2">Del 2</a>
+        <a href="#finale">Finale</a>
+        <a href="#quiz">Quiz</a>
+    </nav>
+    <main>
+        <section id="regler" class="card">
+            <h2>📜 Grunnregler</h2>
+            <ul>
+                <li><strong>5 spillere</strong> – 19 pakker</li>
+                <li>Ingen pakker åpnes før helt til slutt</li>
+                <li>Straff følger pakken så lenge du eier den</li>
+                <li>Ingen kan ha 0 pakker</li>
+            </ul>
+        </section>
+        <section id="del1" class="card">
+            <h2>🎲 Del 1 – Fordeling</h2>
+            <p class="description">Kast terningen og følg instruksjonene:</p>
+            <div class="dice-grid">
+                <div class="dice-item"><span class="dice">1-3</span><span class="action">Ta pakke</span></div>
+                <div class="dice-item"><span class="dice">4-5</span><span class="action">Gi pakke</span></div>
+                <div class="dice-item"><span class="dice">6</span><span class="action">Bytt pakke</span></div>
+            </div>
+        </section>
+        <section id="del2" class="card">
+            <h2>🌀 Del 2 – Terningskaos <span class="timer-badge">10 min</span></h2>
+            <p class="description">Kaotisk fase! Kast terningen og gjør handlingen:</p>
+            <div class="dice-grid chaos">
+                <div class="dice-item"><span class="dice">1</span><span class="action">Stjel pakke</span></div>
+                <div class="dice-item"><span class="dice">2</span><span class="action">Gi pakke</span></div>
+                <div class="dice-item"><span class="dice">3</span><span class="action">Bytt pakke</span></div>
+                <div class="dice-item"><span class="dice">4</span><span class="action">Bytt alle (minst 1 hver)</span></div>
+                <div class="dice-item"><span class="dice">5</span><span class="action">To spillere bytter</span></div>
+                <div class="dice-item"><span class="dice">6</span><span class="action">Kontrollert kaos (velg én handling)</span></div>
+            </div>
+        </section>
+        <section class="card penalty">
+            <h2>⚠️ Glemme Straff</h2>
+            <p>Hvis noen glemmer straffen sin:</p>
+            <ol>
+                <li>Rop <strong>«STRAFF!»</strong></li>
+                <li>→ Gi én pakke til den som glemte</li>
+                <li>→ Hvis ikke mulig: stå over neste tur</li>
+            </ol>
+        </section>
+        <section id="finale" class="card transition">
+            <h2>🔄 Overgang til Finale</h2>
+            <p>Spillet stoppes og pakkene justeres rolig:</p>
+            <ul>
+                <li>Alle sitter igjen med <strong>2 pakker</strong></li>
+                <li><strong>9 pakker</strong> legges i midten</li>
+                <li>Alle straffer opphører</li>
+            </ul>
+        </section>
+        <section class="card finale-info">
+            <h2>🏆 Quizfinale – De siste 9 pakkene</h2>
+            <div class="hosts">
+                <p><strong>Programledere:</strong> Vincent & Edel</p>
+                <p><strong>Spillere:</strong> 3</p>
+            </div>
+            <ul>
+                <li>9 spørsmål – 1 pakke per spørsmål</li>
+                <li>Alle svarer samtidig</li>
+                <li>Riktig svar → vinner pakken</li>
+                <li>Flere riktige → terningkast avgjør</li>
+                <li>Ingen riktige → programleder avgjør</li>
+                <li><strong>Maks 3 pakker per spiller</strong></li>
+            </ul>
+            <div class="ending">
+                <p>🎉 <strong>Avslutning:</strong> Alle åpner pakkene – Julens forbannelse er brutt! 🎉</p>
+            </div>
+        </section>
+        <section id="quiz" class="card quiz-section">
+            <h2>❓ Quiz – Programlederverktøy</h2>
+            <p class="description">Klikk på et spørsmål for å vise det. Klikk igjen for å vise svaret.</p>
+            <div class="quiz-controls">
+                <button id="shuffle-btn" class="btn">🔀 Bland spørsmål</button>
+                <button id="reset-btn" class="btn">🔄 Nullstill</button>
+                <span class="question-counter">Spørsmål brukt: <span id="used-count">0</span>/9</span>
+            </div>
+            <div id="quiz-container" class="quiz-container"></div>
+            <div id="current-question" class="current-question hidden">
+                <div class="question-display">
+                    <span class="question-number"></span>
+                    <p class="question-text"></p>
+                </div>
+                <div class="answer-display hidden">
+                    <p class="answer-text"></p>
+                </div>
+                <div class="question-controls">
+                    <button id="show-answer-btn" class="btn btn-answer">Vis svar</button>
+                    <button id="next-question-btn" class="btn btn-next">Neste spørsmål</button>
+                </div>
+            </div>
+        </section>
+        <section class="card timer-section">
+            <h2>⏱️ Timer – Del 2</h2>
+            <div class="timer-display"><span id="timer">10:00</span></div>
+            <div class="timer-controls">
+                <button id="start-timer" class="btn btn-start">▶️ Start</button>
+                <button id="pause-timer" class="btn btn-pause">⏸️ Pause</button>
+                <button id="reset-timer" class="btn btn-reset">🔄 Nullstill</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>🎄 God jul og godt nytt år! 🎄</p>
+        <p class="credits">Julens Forbannelse – Et spill av Vincent & Edel</p>
+    </footer>
+    <script>
+        const questions = [
+            { id: 1, question: "Hvilken farge har Coca-Cola's julenisse på seg?", answer: "Rød og hvit", category: "Klassiker" },
+            { id: 2, question: "I hvilken by ligger Julenissens offisielle postkontor?", answer: "Rovaniemi, Finland (eller Drøbak i Norge)", category: "Geografi" },
+            { id: 3, question: "Hva heter reinsdyret med den røde nesen?", answer: "Rudolf", category: "Klassiker" },
+            { id: 4, question: "Hvilken TV-serie ser nordmenn tradisjonelt på lille julaften?", answer: "Grevinnen og hovmesteren (Dinner for One)", category: "Norsk tradisjon" },
+            { id: 5, question: "Hvor mange gaver fikk kjæresten totalt i sangen 'The Twelve Days of Christmas'?", answer: "364 gaver", category: "Musikk" },
+            { id: 6, question: "Hvilket land startet tradisjonen med juletrær?", answer: "Tyskland", category: "Historie" },
+            { id: 7, question: "Hva kalles frykten for julenissen?", answer: "Santafobi (eller Claustofobi)", category: "Kuriosa" },
+            { id: 8, question: "I filmen 'Love Actually' - hvilken sang synger Billy Mack?", answer: "Christmas Is All Around", category: "Film" },
+            { id: 9, question: "Hva er det tradisjonelle navnet på kvelden før julaften i Norge?", answer: "Lille julaften (23. desember)", category: "Norsk tradisjon" },
+            { id: 10, question: "Hvilken plante er det tradisjon å kysse under i julen?", answer: "Misteltein", category: "Tradisjon" },
+            { id: 11, question: "Hva heter de tre vise menn som besøkte Jesusbarnet?", answer: "Kaspar, Melkior og Baltasar", category: "Religion" },
+            { id: 12, question: "Hvilket dyr er hovedpersonen i den norske julekalenderen 'Jul i Blåfjell'?", answer: "En fjellrev (Turansen er en blånisse)", category: "Norsk TV" },
+            { id: 13, question: "I 'Alene Hjemme' - hvor skal familien McCallister reise på juleferie?", answer: "Paris, Frankrike", category: "Film" },
+            { id: 14, question: "Hva er den bestselgende julesingelen gjennom alle tider?", answer: "White Christmas av Bing Crosby", category: "Musikk" },
+            { id: 15, question: "Hvilken dag feirer man jul i Russland?", answer: "7. januar", category: "Internasjonal" }
+        ];
+        let shuffledQuestions = [...questions];
+        let usedQuestions = new Set();
+        let currentQuestionIndex = null;
+        let answerRevealed = false;
+        let timerInterval = null;
+        let timeRemaining = 600;
+        let timerRunning = false;
+        const quizContainer = document.getElementById('quiz-container');
+        const currentQuestionEl = document.getElementById('current-question');
+        const questionNumberEl = currentQuestionEl.querySelector('.question-number');
+        const questionTextEl = currentQuestionEl.querySelector('.question-text');
+        const answerDisplayEl = currentQuestionEl.querySelector('.answer-display');
+        const answerTextEl = currentQuestionEl.querySelector('.answer-text');
+        const showAnswerBtn = document.getElementById('show-answer-btn');
+        const nextQuestionBtn = document.getElementById('next-question-btn');
+        const shuffleBtn = document.getElementById('shuffle-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const usedCountEl = document.getElementById('used-count');
+        const timerEl = document.getElementById('timer');
+        const startTimerBtn = document.getElementById('start-timer');
+        const pauseTimerBtn = document.getElementById('pause-timer');
+        const resetTimerBtn = document.getElementById('reset-timer');
+        function init() { shuffleQuestions(); renderQuestionCards(); setupEventListeners(); updateUsedCount(); }
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+        function shuffleQuestions() { shuffledQuestions = shuffleArray(questions).slice(0, 9); }
+        function renderQuestionCards() {
+            quizContainer.innerHTML = '';
+            shuffledQuestions.forEach((q, index) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.dataset.index = index;
+                card.textContent = `${index + 1}`;
+                if (usedQuestions.has(index)) card.classList.add('used');
+                card.addEventListener('click', () => selectQuestion(index));
+                quizContainer.appendChild(card);
+            });
+        }
+        function selectQuestion(index) {
+            if (usedQuestions.has(index)) return;
+            document.querySelectorAll('.question-card').forEach(card => card.classList.remove('active'));
+            const selectedCard = document.querySelector(`[data-index="${index}"]`);
+            selectedCard.classList.add('active');
+            currentQuestionIndex = index;
+            answerRevealed = false;
+            const question = shuffledQuestions[index];
+            questionNumberEl.textContent = `Spørsmål ${index + 1} - ${question.category}`;
+            questionTextEl.textContent = question.question;
+            answerTextEl.textContent = question.answer;
+            currentQuestionEl.classList.remove('hidden');
+            answerDisplayEl.classList.add('hidden');
+            showAnswerBtn.style.display = 'inline-block';
+        }
+        function revealAnswer() {
+            if (currentQuestionIndex === null) return;
+            answerRevealed = true;
+            answerDisplayEl.classList.remove('hidden');
+            showAnswerBtn.style.display = 'none';
+        }
+        function nextQuestion() {
+            if (currentQuestionIndex === null) return;
+            usedQuestions.add(currentQuestionIndex);
+            updateUsedCount();
+            const usedCard = document.querySelector(`[data-index="${currentQuestionIndex}"]`);
+            usedCard.classList.add('used');
+            usedCard.classList.remove('active');
+            currentQuestionEl.classList.add('hidden');
+            currentQuestionIndex = null;
+            answerRevealed = false;
+            if (usedQuestions.size >= 9) showCompletionMessage();
+        }
+        function updateUsedCount() { usedCountEl.textContent = usedQuestions.size; }
+        function showCompletionMessage() {
+            currentQuestionEl.classList.remove('hidden');
+            questionNumberEl.textContent = '🎉 Ferdig!';
+            questionTextEl.textContent = 'Alle 9 spørsmål er besvart! Nå kan pakkene åpnes - Julens forbannelse er brutt!';
+            answerDisplayEl.classList.add('hidden');
+            showAnswerBtn.style.display = 'none';
+            nextQuestionBtn.style.display = 'none';
+        }
+        function resetQuiz() {
+            usedQuestions.clear();
+            currentQuestionIndex = null;
+            answerRevealed = false;
+            currentQuestionEl.classList.add('hidden');
+            nextQuestionBtn.style.display = 'inline-block';
+            renderQuestionCards();
+            updateUsedCount();
+        }
+        function shuffleAndReset() { shuffleQuestions(); resetQuiz(); }
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+        function updateTimerDisplay() {
+            timerEl.textContent = formatTime(timeRemaining);
+            const timerDisplay = document.querySelector('.timer-display');
+            timerDisplay.classList.remove('warning', 'danger');
+            if (timeRemaining <= 60 && timeRemaining > 30) timerDisplay.classList.add('warning');
+            else if (timeRemaining <= 30) timerDisplay.classList.add('danger');
+            if (timerRunning) timerDisplay.classList.add('running');
+            else timerDisplay.classList.remove('running');
+        }
+        function startTimer() {
+            if (timerRunning) return;
+            timerRunning = true;
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+                if (timeRemaining <= 0) { stopTimer(); playAlarm(); }
+            }, 1000);
+            updateTimerDisplay();
+        }
+        function stopTimer() { timerRunning = false; clearInterval(timerInterval); updateTimerDisplay(); }
+        function resetTimer() { stopTimer(); timeRemaining = 600; updateTimerDisplay(); }
+        function playAlarm() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                oscillator.frequency.value = 800;
+                oscillator.type = 'sine';
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 1);
+            } catch (e) { console.log('Audio not supported'); }
+            alert('⏰ Tiden er ute! Del 2 er over!');
+        }
+        function setupEventListeners() {
+            showAnswerBtn.addEventListener('click', revealAnswer);
+            nextQuestionBtn.addEventListener('click', nextQuestion);
+            shuffleBtn.addEventListener('click', shuffleAndReset);
+            resetBtn.addEventListener('click', resetQuiz);
+            startTimerBtn.addEventListener('click', startTimer);
+            pauseTimerBtn.addEventListener('click', stopTimer);
+            resetTimerBtn.addEventListener('click', resetTimer);
+        }
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
